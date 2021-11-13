@@ -239,6 +239,14 @@ footer {
   padding: 10px;
   margin: 15px 0;
 }
+.formBoxRight .success {
+  display: block;
+  color: var(--green-color);
+  text-align: center;
+  border: 1px solid var(--green-color);
+  padding: 10px;
+  margin: 15px 0;
+}
 
 .formContent {
   width: 100%;

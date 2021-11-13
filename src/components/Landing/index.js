@@ -8,7 +8,7 @@ const Landing = () => {
         setTimeout(() => {
             refWolverine.current.classList.remove("startingImg")
             setBtn(true);
-        }, 1000);
+        }, 500);
     }, []); // cette fonction s'execute 
     // après le return en bas
     // une fois l'element welcomePage est monté on ajoute la classe startingImg à coté de welcomePage

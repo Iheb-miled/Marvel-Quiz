@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App/index'
 import reportWebVitals from './reportWebVitals';
-
+import Firebase ,{FirebaseContext} from './components/Firebase/'
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+<FirebaseContext.Provider value={new Firebase()}>
+    <App /> {/* FirebaseContext sera consommé par App.js ainsi tout ses enfant */}
+    </FirebaseContext.Provider>,
   document.getElementById('root')
 );
 
