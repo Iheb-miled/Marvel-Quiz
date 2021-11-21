@@ -14,7 +14,7 @@ const SignUp = (props) => {
     }
     const [signUpData, setsignUpData] = useState(data);
     const [error, setError] = useState("")
-    const { pseudo, email, password , confirmPassword } = signUpData;
+    const { pseudo, email, password, confirmPassword } = signUpData;
     const [successSignup, setSuccessSignup] = useState("")
     console.log("succes", successSignup);
     const handleChange = (e) => {
@@ -23,12 +23,18 @@ const SignUp = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();    // preventDefault pour ne pas réfraichir la page // eviter le rechargement de page 
         const { email, password } = signUpData;
-        firebase.signUpUser(email, password).then(user => {
-            setSuccessSignup("Your account is successfully created")
+        firebase.signUpUser(email, password).then(authuser => {
+            firebase.user(authuser.user.uid).set({
+                pseudo,
+                email,
+                password
+            })
+
+        }).then(() => {
+            setSuccessSignup("Your account is successfully created");
             setsignUpData({ ...data }); // data toujours vide il ne se remplit pas car c'est l'état initiale 
             setError("");
             props.history.push("/welcome")
-
         }).catch(err => {
             setError(err)
             setsignUpData({ ...data }); // data toujours vide il ne se remplit pas car c'est l'état initiale 
@@ -73,7 +79,7 @@ const SignUp = (props) => {
                         </form>
                         <div className="linkContainer">
                             <Link className="simpleLink" to="/login">
-                                Déja Inscrit ? Connectez-vous 
+                                Déja Inscrit ? Connectez-vous
                             </Link>
                         </div>
                     </div>

@@ -18,17 +18,17 @@ const Login = (props) => {
     const handleSubmit = (e) => {
 
         e.preventDefault();
-        const {email, password} = login;
+        const { email, password } = login;
         firebase.loginUser(email, password).then(user => {
             setError('')
             props.history.push('/welcome')
         }).catch(e => {
             console.log("eeror", e.message)
-              setError(e)
+            setError(e)
         })
     }
     const errorMsg = error !== '' && <span>{error.message}</span>
-    const btn = email !== '' && password !== '' && password.length>5? <button >Connexion</button> : <button disabled>Connexion</button>
+    const btn = email !== '' && password !== '' && password.length > 5 ? <button >Connexion</button> : <button disabled>Connexion</button>
 
     return (
         <div className='signUpLoginBox'>
@@ -39,6 +39,7 @@ const Login = (props) => {
                     <div className="formContent">
                         {errorMsg}
                         <h2>Connexion</h2>
+
                         <form onSubmit={handleSubmit}>
                             <div className="inputBox">
                                 <input onChange={handleChange} type="email" value={email} id="email" autoComplete="off" required />  {/* autoComplete disable to save data in memory */}
@@ -47,13 +48,19 @@ const Login = (props) => {
                             <div className="inputBox">
                                 <input onChange={handleChange} type="password" value={password} id="password" autoComplete="off" required />  {/* autoComplete disable to save data in memory */}
                                 <label htmlFor="password"> Password</label>
+
                             </div>
                             {btn}
                         </form>
                         <div className="linkContainer">
-                            <Link className="simpleLink" to="/sign-up">
-                                Nouveau sur Marvel-quiz ? S'inscrire Maintenant                            </Link>
+                            <Link className="simpleLink" to="/forget-password">
+                                Mots de passe oublié?</Link>
+                               <br />
+                                <Link className="simpleLink" to="/sign-up">
+                                Nouveau sur Marvel-quiz ? S'inscrire Maintenant</Link>
+                
                         </div>
+                 
                     </div>
                 </div>
             </div>
