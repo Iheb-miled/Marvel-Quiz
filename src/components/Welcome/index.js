@@ -14,7 +14,8 @@ const Welcome = (props) => {
             user ? setUserSession(user) : props.history.push('/')
         })
         !!userSession &&  firebase.user(userSession.uid).get().then(data=>{
-            setUserData(data.data());
+            if(data && data.exists){
+            setUserData(data.data());}
         }).catch(error=>{
             setError(error.message)
         })
@@ -32,6 +33,7 @@ const Welcome = (props) => {
             </div>
         </Fragment>
     ) : (
+        
         <div className="quiz-bg">
             <div className='container'>
                 <Logout />
