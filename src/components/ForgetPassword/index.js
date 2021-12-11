@@ -11,9 +11,9 @@ const ForgetPassword = (props) => {
     const [sendSucess, setsendSucess] = useState(null);
     const [recepter, setRecepter] = useState(null);
     useEffect(() => {
-        sendSucess!=null&&counter > 0 && setTimeout(() => setCounter(counter - 1), 1000)&&
+        sendSucess!=null&&counter > -1 && setTimeout(() => setCounter(counter - 1), 1000)&&
         setsendSucess(`An email has been sent to ${recepter} , redirection in ` + counter+"...");
-        counter == 0 && props.history.push("/login");
+        counter == -1 && props.history.push("/login");
         return () =>{}
     }, [counter,sendSucess]);
 
